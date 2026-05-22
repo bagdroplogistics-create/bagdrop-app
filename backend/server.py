@@ -117,7 +117,7 @@ def send_booking_email(b: dict) -> None:
 
 # ============== Models ==============
 class BookingCreate(BaseModel):
-    client_id: str
+    client_id: Optional[str] = "guest"
     service_id: str
     service_title: str
     service_color: str = "orange"
@@ -192,7 +192,7 @@ async def create_booking(payload: BookingCreate, background: BackgroundTasks):
 
 
 @api_router.get("/bookings", response_model=List[Booking])
-async def list_bookings(client_id: str = Query(...)):
+async def list_bookings(client_id: Optional[str] = "guest" = Query(...)):
     cursor = db.bookings.find({"client_id": client_id}).sort("created_at", -1)
     docs = await cursor.to_list(500)
     return [Booking(**serialize(d)) for d in docs]
