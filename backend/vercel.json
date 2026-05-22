@@ -1,10 +1,1 @@
-{
-  "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.py"
-    }
-  ]
-}
-
+{ "version": 2, "functions": { "server.py": { "runtime": "python3.9" } }, "routes": [ { "src": "/(.*)", "dest": "server.py" } ] }
