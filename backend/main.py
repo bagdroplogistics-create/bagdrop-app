@@ -449,5 +449,5 @@ async def shutdown_db_client():
 # =========================
 # Vercel ASGI Handler
 # =========================
-handler = app
+
 
