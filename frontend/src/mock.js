@@ -33,13 +33,13 @@ export const SERVICES = [
   {
     id: 'hotel-to-hotel',
     category: 'scheduled',
-    title: 'Hotel Hop',
-    subtitle: 'City-to-city luggage between hotels',
+    title: 'Land & Go',
+    subtitle: 'Airport-to-home luggage delivery',
     hours: '10AM - 6PM',
     badge: 'NEW',
     color: 'pink',
     icon: 'Luggage',
-    description: 'Travelling between cities? We transfer your bags directly hotel to hotel.'
+    description: 'Travelling between cities? We transfer your bags directly Airport to hotel/home.'
   },
   {
     id: 'after-hour-airport',
