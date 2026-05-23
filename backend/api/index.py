@@ -38,6 +38,10 @@ db = client[db_name]
 # =========================
 app = FastAPI(title="Bagdrop Booking API")
 
+app.add_middleware( CORSMiddleware, allow_origins=[ "https://bagdrop-app.vercel.app", "http://localhost:3000" ], allow_credentials=True, allow_methods=["*"], allow_headers=["*"], ) 
+
+
+
 api_router = APIRouter(prefix="/api")
 
 # =========================
@@ -416,18 +420,6 @@ async def track(code: str):
 # =========================
 # Register Router
 # =========================
-app.include_router(api_router)
-
-# =========================
-# CORS
-# =========================
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # =========================
 # Logging
@@ -445,7 +437,7 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
-
+app.include_router(api_router)
 # =========================
 # Vercel ASGI Handler
 # =========================
