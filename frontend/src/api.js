@@ -1,4 +1,3 @@
-```javascript id="t4n7k2"
 import axios from "axios";
 
 const BACKEND_URL = "https://bagdrop-clean-backend.vercel.app";
@@ -36,4 +35,3 @@ export const BookingsAPI = {
     return data;
   },
 };
-```
