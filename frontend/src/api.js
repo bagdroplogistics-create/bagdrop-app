@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // Auto-detect backend URL
-const BACKEND_URL = "https://bagdrop-clean-backend.vercel.app/";
+const BACKEND_URL = "https://bagdrop-clean-backend.vercel.app";
 
-export const API = `${BACKEND_URL}`;
+export const API = `${BACKEND_URL}/api`;
 
 // Persist a stable client_id per browser
 export function getClientId() {
