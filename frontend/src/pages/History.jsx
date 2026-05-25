@@ -85,7 +85,6 @@ export default function History() {
                   <span className="text-sm font-semibold text-gray-900">₹{(b.total_price || 0).toLocaleString("en-IN")}</span>
                 </div>
                 {!["Delivered", "Cancelled"].includes(b.status) && (
-              
 <Button
   variant="destructive"
   onClick={async () => {
@@ -109,8 +108,6 @@ export default function History() {
 >
   Cancel Booking
 </Button>
-
-
                 )}
               </div>
             </div>
