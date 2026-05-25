@@ -30,13 +30,13 @@ export const BookingsAPI = {
     return response.data;
   },
 
-delete: async (id) => {
-  const response = await API.delete(
+ cancel: async (id) => {
+   const response = await API.delete(
     `/bookings/${id}`
-  );
-
+   );
   return response.data;
 },
+
 
 };
 
