@@ -96,7 +96,7 @@ export const BAG_TYPES = {
     },
   ],
 
-  "door-to-door-delivery": [
+  "address-to-address": [
     {
       id: "door-300",
       name: "1 - 300 KM",
