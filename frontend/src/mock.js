@@ -78,9 +78,48 @@ export const LOCATIONS = [
   { id: 'goi-city', city: 'Goa', label: 'Goa (North & South - Any address)', type: 'city' },
 ];
 
-export const BAG_TYPES = [
-  { id: 'travel', name: 'Travel Bag', dim: 'Standard travel bag / suitcase', weight: 'up to 32kg', price: 899 },
-];
+export const BAG_TYPES = {
+  "airport-delivery": [
+    {
+      id: "airport-600",
+      name: "Up to 600 KM",
+      dim: "Airport Delivery",
+      weight: "up to 32kg",
+      price: 2499,
+    },
+    {
+      id: "airport-1200",
+      name: "600 - 1200 KM",
+      dim: "Airport Delivery",
+      weight: "up to 32kg",
+      price: 4500,
+    },
+  ],
+
+  "door-to-door-delivery": [
+    {
+      id: "door-300",
+      name: "1 - 300 KM",
+      dim: "Door-to-Door Delivery",
+      weight: "up to 32kg",
+      price: 999,
+    },
+    {
+      id: "door-600",
+      name: "300 - 600 KM",
+      dim: "Door-to-Door Delivery",
+      weight: "up to 32kg",
+      price: 1499,
+    },
+    {
+      id: "door-1200",
+      name: "600 - 1200 KM",
+      dim: "Door-to-Door Delivery",
+      weight: "up to 32kg",
+      price: 2499,
+    },
+  ],
+};
 
 // Backwards compat alias (unused going forward)
 export const BAG_SIZES = BAG_TYPES;
