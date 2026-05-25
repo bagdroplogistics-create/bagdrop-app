@@ -85,12 +85,33 @@ export default function History() {
                   <span className="text-sm font-semibold text-gray-900">₹{(b.total_price || 0).toLocaleString("en-IN")}</span>
                 </div>
                 {!["Delivered", "Cancelled"].includes(b.status) && (
-                  <button
-                    onClick={() => cancelBooking(b.id)}
-                    className="mt-2 text-[11px] text-red-500 hover:underline"
-                  >
-                    Cancel booking
-                  </button>
+              
+<Button
+  variant="destructive"
+  onClick={async () => {
+    try {
+
+      await API.delete(
+        `/bookings/${booking.id}`
+      );
+
+      alert("Booking cancelled successfully");
+
+      window.location.reload();
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Failed to cancel booking");
+
+    }
+  }}
+>
+  Cancel Booking
+</Button>
+
+
                 )}
               </div>
             </div>
