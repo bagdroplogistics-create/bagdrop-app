@@ -29,6 +29,15 @@ export const BookingsAPI = {
     const response = await API.get(`/track/${code}`);
     return response.data;
   },
+
+delete: async (id) => {
+  const response = await API.delete(
+    `/bookings/${id}`
+  );
+
+  return response.data;
+},
+
 };
 
 export default API;
