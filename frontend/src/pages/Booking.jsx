@@ -49,7 +49,7 @@ export default function Booking() {
   const handleNext = () => {
     if (!canContinue()) {
       if (step === 2 && dropDate && date && dropDate < date) {
-        toast.error("Drop date cannot be before pickup date");
+        toast.error("Delivery date cannot be before pickup date");
       } else {
         toast.error("Please fill in the required fields");
       }
@@ -172,7 +172,7 @@ export default function Booking() {
                 </div>
               </div>
               <div>
-                <label className="label">Drop date</label>
+                <label className="label">Delivery date</label>
                 <div className="relative">
                   <input data-testid="drop-date" type="date" className="input with-icon-right" value={dropDate} onChange={(e) => setDropDate(e.target.value)} min={date || today} />
                   <CalendarDays size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
@@ -228,12 +228,10 @@ export default function Booking() {
               </div>
             </div>
             <div>
-              <label className="label">Email (optional)</label>
+              <label className="label">Email</label>
               <input className="input" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className="rounded-xl bg-orange-50 border border-orange-100 p-4 text-xs text-orange-800">
-              You'll receive booking updates on WhatsApp at this number. Standard charges apply.
-            </div>
+          
           </div>
         )}
 
@@ -245,7 +243,7 @@ export default function Booking() {
               <div className="summary-row"><span>Pickup</span><span className="text-gray-900 text-right max-w-[60%]">{pickupAddress}<br/>{LOCATIONS.find(l=>l.id===from)?.city}</span></div>
               <div className="summary-row"><span>Drop</span><span className="text-gray-900 text-right max-w-[60%]">{dropAddress}<br/>{LOCATIONS.find(l=>l.id===to)?.city}</span></div>
               <div className="summary-row"><span>Pickup date · Slot</span><span className="text-gray-900">{date} · {timeSlot}</span></div>
-              <div className="summary-row"><span>Drop date</span><span className="text-gray-900">{dropDate}</span></div>
+              <div className="summary-row"><span>Delivery date</span><span className="text-gray-900">{dropDate}</span></div>
               <div className="summary-row"><span>Bags</span><span className="text-gray-900">{totalBags} × {bagType.name}</span></div>
               <div className="summary-row"><span>Contact</span><span className="text-gray-900">{name} · {phone}</span></div>
             </div>
