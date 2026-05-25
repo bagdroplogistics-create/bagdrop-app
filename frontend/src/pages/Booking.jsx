@@ -31,7 +31,7 @@ export default function Booking() {
   const totalBags = bagCount;
   const totalPrice = bagCount * bagType.price;
 
-  const SLOTS = ["08:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00", "22:00 - 24:00"];
+  const SLOTS = ["08:00 - 10:00", "10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00", "22:00 - 00:00"];
 
   const today = new Date().toISOString().split("T")[0];
 
