@@ -90,11 +90,10 @@ export default function History() {
   variant="destructive"
   onClick={async () => {
     try {
-
-      await API.delete(
-        `/bookings/${booking.id}`
-      );
-
+     await BookingsAPI.delete(
+       booking.id
+     );
+      
       alert("Booking cancelled successfully");
 
       window.location.reload();
