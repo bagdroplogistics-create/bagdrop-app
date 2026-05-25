@@ -26,8 +26,10 @@ export default function Booking() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedBag, setSelectedBag] = useState(0);
+  const bagOptions = BAG_TYPES[service.id] || [];
+  const bagType = bagOptions[selectedBag];
 
-  const bagType = BAG_TYPES[0];
   const totalBags = bagCount;
   const totalPrice = bagCount * bagType.price;
 
@@ -189,25 +191,62 @@ export default function Booking() {
                 ))}
               </div>
             </div>
-            <div>
-              <label className="label">Bags</label>
-              <div className="bag-tile flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full icon-bubble-orange flex items-center justify-center">
-                    <Luggage size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{bagType.name}</p>
-                    <p className="text-[11px] text-gray-500">{bagType.dim} · {bagType.weight}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <p className="text-sm font-semibold text-gray-700">₹{bagType.price}/bag</p>
-                  <Counter value={bagCount} onChange={setBagCount} min={1} />
-                </div>
-              </div>
-              <p className="text-[11px] text-gray-400 mt-2">Carrying odd-sized or fragile items? Add a note when our team calls to confirm.</p>
-            </div>
+    
+<div>
+  <label className="label">Bags</label>
+
+  <div className="space-y-3">
+
+    {bagOptions.map((bag, index) => (
+
+      <div
+        key={bag.id}
+        onClick={() => setSelectedBag(index)}
+        className={`bag-tile flex items-center justify-between cursor-pointer ${
+          selectedBag === index ? "selected border-orange-500" : ""
+        }`}
+      >
+
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-full icon-bubble-orange flex items-center justify-center">
+            <Luggage size={20} />
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-gray-900">
+              {bag.name}
+            </p>
+
+            <p className="text-[11px] text-gray-500">
+              {bag.dim} · {bag.weight}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <p className="text-sm font-semibold text-gray-700">
+            ₹{bag.price}/bag
+          </p>
+
+          <Counter
+            value={bagCount}
+            onChange={setBagCount}
+            min={1}
+          />
+        </div>
+
+      </div>
+
+    ))}
+
+  </div>
+
+  <p className="text-[11px] text-gray-400 mt-2">
+    Carrying odd-sized or fragile items? Add a note when our team calls to confirm.
+  </p>
+</div>
+
+
           </div>
         )}
 
