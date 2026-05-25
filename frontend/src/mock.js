@@ -24,7 +24,7 @@ export const SERVICES = [
     category: 'scheduled',
     title: 'Airport Express',
     subtitle: 'Direct delivery to airport check-in',
-    hours: '8 AM – 6 PM',
+    hours: '8 AM – 8 PM',
     badge: 'POPULAR',
     color: 'orange',
     icon: 'Plane',
@@ -35,7 +35,7 @@ export const SERVICES = [
     category: 'scheduled',
     title: 'Land & Go',
     subtitle: 'Airport-to-home luggage delivery',
-    hours: '10AM - 6PM',
+    hours: '10AM - 10PM',
     badge: 'NEW',
     color: 'pink',
     icon: 'Luggage',
@@ -79,7 +79,7 @@ export const LOCATIONS = [
 ];
 
 export const BAG_TYPES = [
-  { id: 'travel', name: 'Travel Bag', dim: 'Standard travel bag / suitcase', weight: 'up to 23kg', price: 899 },
+  { id: 'travel', name: 'Travel Bag', dim: 'Standard travel bag / suitcase', weight: 'up to 32kg', price: 899 },
 ];
 
 // Backwards compat alias (unused going forward)
