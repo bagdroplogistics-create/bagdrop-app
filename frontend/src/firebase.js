@@ -7,12 +7,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBPLpFJ38zNPp77DwHpFw6SdYrKbVMpdpY",
+  authDomain: "bagdrop-56119.firebaseapp.com",
+  projectId: "bagdrop-56119",
+  storageBucket: "bagdrop-56119.firebasestorage.app",
+  messagingSenderId: "526819522969",
+  appId: "1:526819522969:web:8ffb87312f0bbab1fd7b08",
+  measurementId: "G-K0SGTFLJEZ"
 };
 
 const app = initializeApp(firebaseConfig);
