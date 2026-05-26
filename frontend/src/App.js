@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import Onboarding from "./pages/Onboarding";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+
 import Booking from "./pages/Booking";
 import Track from "./pages/Track";
 import History from "./pages/History";
@@ -16,10 +16,8 @@ function App() {
       <Toaster position="top-center" />
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
-       
           <Route path="/onboarding" element={<Onboarding />} />
-          
+          <Route path="/home" element={<Home />} /
           <Route path="/book/:serviceId" element={<Booking />} />
           <Route path="/track" element={<Track />} />
           <Route path="/history" element={<History />} />
