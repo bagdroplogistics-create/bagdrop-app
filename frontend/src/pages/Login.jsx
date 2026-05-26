@@ -15,9 +15,9 @@ export default function Login() {
   const [otp, setOtp] = useState("");
   const [confirmObj, setConfirmObj] = useState(null);
 
-  const sendOTP = async () => {
+  const setupRecaptcha = () => {
 
-    try {
+    if (!window.recaptchaVerifier) {
 
       window.recaptchaVerifier =
         new RecaptchaVerifier(
@@ -25,19 +25,31 @@ export default function Login() {
           "recaptcha-container",
           {
             size: "invisible",
+            callback: () => {}
           }
         );
+    }
+  };
+
+  const sendOTP = async () => {
+
+    try {
+
+      setupRecaptcha();
+
+      const appVerifier =
+        window.recaptchaVerifier;
 
       const confirmation =
         await signInWithPhoneNumber(
           auth,
           `+91${phone}`,
-          window.recaptchaVerifier
+          appVerifier
         );
 
       setConfirmObj(confirmation);
 
-      alert("OTP sent");
+      alert("OTP sent successfully");
 
     } catch (error) {
 
@@ -70,13 +82,17 @@ export default function Login() {
   return (
     <div className="app-shell p-5">
 
-      <h1 className="text-2xl font-bold mb-6">
-        Login
+      <h1 className="text-3xl font-bold mb-2">
+        Welcome to Bagdrop
       </h1>
+
+      <p className="text-gray-500 mb-6">
+        Login with your mobile number
+      </p>
 
       <input
         className="input mb-4"
-        placeholder="Mobile Number"
+        placeholder="Enter Mobile Number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />
@@ -107,3 +123,4 @@ export default function Login() {
     </div>
   );
 }
+
