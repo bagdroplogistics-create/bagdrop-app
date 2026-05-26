@@ -119,6 +119,37 @@ export const BAG_TYPES = {
       price: 2499,
     },
   ],
+
+  "hotel-to-hotel": [
+    {
+      id: 'travel',
+      name: 'Travel Bag',
+      dim: 'Standard travel bag / suitcase',
+      weight: "up to 32kg",
+      price: 999,
+    },
+  ],
+
+    "after-hour-airport": [
+    {
+      id: 'travel',
+      name: 'Travel Bag',
+      dim: 'Standard travel bag / suitcase',
+      weight: "up to 32kg",
+      price: 999,
+    },
+  ],
+
+      "self-collect": [
+    {
+      id: 'travel',
+      name: 'Travel Bag',
+      dim: 'Standard travel bag / suitcase',
+      weight: "up to 32kg",
+      price: 999,
+    },
+  ],
+  
 };
 
 // Backwards compat alias (unused going forward)
