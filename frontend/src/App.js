@@ -16,8 +16,8 @@ function App() {
       <Toaster position="top-center" />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Onboarding />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/home" element={<Home />} />
           <Route path="/book/:serviceId" element={<Booking />} />
           <Route path="/track" element={<Track />} />
