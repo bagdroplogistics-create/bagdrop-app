@@ -165,6 +165,18 @@ backend:
         agent: "testing"
         comment: "✅ EMAIL INTEGRATION TEST PASSED. Created booking BD37240 with realistic payload (client_id=email_test_1779184516, service='Doorstep to Doorstep', Mumbai→Goa, pickup_date=2026-06-20, drop_date=2026-06-21, customer='Email Test Customer', email='test-customer@example.com', total=₹1798). Verified: (1) POST /api/bookings returns 200 OK with code BD37240 and drop_date=2026-06-21 echoed back. (2) Backend logs show 'Sent booking email for BD37240 to info@bagdrop.co' (success). (3) NO 'SMTP not configured' log line for this booking. (4) GET /api/bookings/BD37240 confirms drop_date persisted correctly in database. SMTP configured correctly with SMTP_HOST=smtp.gmail.com, SMTP_PORT=587, SMTP_USER=info@bagdrop.co, ADMIN_EMAIL=info@bagdrop.co. Email sent to admin (info@bagdrop.co) and CC'd to customer (test-customer@example.com) via background task. Email includes all booking details: service, route, pickup/drop addresses, dates, bags, pricing, customer info."
 
+ - task: "Mobile OTP authentication"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Added MOCKED OTP auth (code always 123456, 5 min TTL). Endpoints: POST /api/auth/request-otp {phone} -> creates/refreshes OTP, returns {phone (normalized to +91 if 10 digits), mock_otp, mocked:true}. POST /api/auth/verify-otp {phone, code, name?} -> validates code+expiry+attempts, auto-creates user on first verify, returns {token, user}. GET /api/auth/me requires Bearer token, returns {user}. POST /api/auth/logout invalidates session. PATCH /api/auth/profile updates name/email. Tokens are random hex stored in sessions collection. 5 wrong attempts return 429. Expired/missing OTP returns 400. Need to verify: request OTP for new phone, verify with 123456 auto-creates user, returns Bearer token. /auth/me requires Authorization: Bearer <token>. Wrong code increments attempts; bad token rejected with 401."
+
 frontend:
   - task: "Onboarding + Home + Booking + History + Track + Profile (frontend)"
     implemented: true
