@@ -23,10 +23,10 @@ load_dotenv(ROOT_DIR / ".env")
 # =========================
 # MongoDB Connection
 # =========================
-mongo_url = os.environ.get("MONGO_URL")
+mongo_url = os.environ.get("MONGO_URL", "")
 
 if not mongo_url:
-    raise Exception("MONGO_URL environment variable not found")
+    print("WARNING: MONGO_URL missing")
 
 db_name = os.environ.get("DB_NAME", "bagdrop")
 
