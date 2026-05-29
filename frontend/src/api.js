@@ -40,7 +40,13 @@ export function getClientId() {
   return id;
 }
 
-export const http = axios.create({ baseURL: API, timeout: 15000 });
+export const http = axios.create({
+  baseURL: `${BACKEND_URL}/api`,
+  timeout: 15000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 http.interceptors.request.use((config) => {
   const t = getToken();
@@ -75,7 +81,7 @@ export const BookingsAPI = {
 
   updateStatus: async (id, body) => {
     const { data } = await API.patch(`/bookings/${id}/status`, body);
-    return response.data;
+    return data;
   },
 
   track: async (code) => {
