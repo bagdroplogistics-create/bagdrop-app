@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { ChevronLeft, Phone, ShieldCheck, KeyRound } from "lucide-react";
-import { AuthAPI, LOGO_URL_OK } from "../api";
-import { LOGO_URL } from "../mock";
+import { AuthAPI } from "../api";
 import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
@@ -112,9 +111,7 @@ export default function Login() {
 
       <div className="flex-1 px-6 pt-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center overflow-hidden">
-            <img src={LOGO_URL} alt="Bagdrop" style={{ width: 50, height: 50, objectFit: "cover", objectPosition: "center top" }} />
-          </div>
+          <Logo size={56} radius={14} />
           <div>
             <p className="text-[11px] tracking-[0.18em] font-bold text-orange-600 uppercase">Bagdrop</p>
             <p className="text-sm text-gray-500">Bag. Box. Delivered.</p>
@@ -217,4 +214,3 @@ function Feature({ icon: Icon, label }) {
     </div>
   );
 }
-
