@@ -110,13 +110,20 @@ export default function Login() {
       </div>
 
       <div className="flex-1 px-6 pt-6">
-        <div className="flex items-center gap-3 mb-6">
-          <Logo size={56} radius={14} />
-          <div>
-            <p className="text-[11px] tracking-[0.18em] font-bold text-orange-600 uppercase">Bagdrop</p>
-            <p className="text-sm text-gray-500">Bag. Box. Delivered.</p>
-          </div>
-        </div>
+      <div className="flex items-center gap-3 mb-6">
+  <div className="w-14 h-14 rounded-xl bg-orange-500 flex items-center justify-center text-white font-bold text-xl">
+    B
+  </div>
+
+  <div>
+    <p className="text-[11px] tracking-[0.18em] font-bold text-orange-600 uppercase">
+      Bagdrop
+    </p>
+    <p className="text-sm text-gray-500">
+      Bag. Box. Delivered.
+    </p>
+  </div>
+</div>
 
         {step === 1 ? (
           <div className="fade-in">
