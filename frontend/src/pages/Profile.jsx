@@ -4,9 +4,55 @@ import Header from "../components/Header";
 import { ChevronRight, MapPin, Phone, Mail, Shield, FileText, HelpCircle, LogOut, Star } from "lucide-react";
 import { USER } from "../mock";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { AuthAPI, BookingsAPI } from "../api";
+import { toast } from "sonner";
 
 export default function Profile() {
   const navigate = useNavigate();
+  const { user, logout, updateUser } = useAuth();
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(user?.name || "\");
+  const [email, setEmail] = useState(user?.email || "\");
+  const [bookingsCount, setBookingsCount] = useState(0);
+  const [memberSince, setMemberSince] = useState("\");
+
+  useEffect(() => {
+    if (!user) return;
+    setName(user.name || "\");
+    setEmail(user.email || "\");
+    if (user.created_at) {
+      try {
+        const d = new Date(user.created_at);
+        setMemberSince(d.toLocaleString("en-IN\", { month: \"long\", year: \"numeric\" }));
+      } catch {/* ignore */}
+    }
+    BookingsAPI.list().then((list) => setBookingsCount(list.length)).catch(() => {});
+  }, [user]);
+
+  const initials = (user?.name || user?.phone || \"U\")
+    .split(" \")
+    .map((n) => n[0])
+    .join("\")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const handleLogout = async () => {
+    await logout();
+    toast.success("Logged out");
+    navigate("login", { replace: true });
+  };
+
+  const saveProfile = async () => {
+    try {
+      const res = await AuthAPI.updateProfile({ name, email });
+      updateUser(res.user);
+      setEditing(false);
+      toast.success("Profile updated");
+    } catch {
+      toast.error("Could not update profile");
+    }
+  };
 
   const Row = ({ icon: Icon, label, sub, onClick }) => (
     <button onClick={onClick} className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 text-left transition-colors">
@@ -69,11 +115,18 @@ export default function Profile() {
         <Row icon={HelpCircle} label="Help & Support" sub="+91 96245 16661" />
       </div>
 
-      <div className="mx-5 mt-4 mb-2">
-        <button onClick={() => navigate("/")} className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl border border-red-100 bg-red-50 text-red-600 text-sm font-medium hover:bg-red-100">
-          <LogOut size={16} /> Restart Onboarding
+      
+      <div className="mx-5 mt-4 mb-2 space-y-2">
+        {!editing && (
+          <button onClick={() => setEditing(true)} className="w-full py-3 rounded-2xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+            Edit profile
+          </button>
+        )}
+        <button onClick={handleLogout} className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl border border-red-100 bg-red-50 text-red-600 text-sm font-medium hover:bg-red-100">
+          <LogOut size={16} /> Log out
         </button>
       </div>
+      
       <p className="text-center text-[11px] text-gray-400 mt-3">Bagdrop · v1.0.0</p>
 
       <BottomNav />
