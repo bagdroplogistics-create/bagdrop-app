@@ -29,7 +29,7 @@ export default function Booking() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   
-  // Prefill contact details from logged-in user
+ // Prefill contact details from logged-in user
   useEffect(() => {
     if (user) {
       if (!name && user.name) setName(user.name);
