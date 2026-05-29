@@ -5,15 +5,18 @@ import BottomNav from "../components/BottomNav";
 import Logo from "../components/Logo";
 import { SERVICES, SERVICE_CATEGORIES } from "../mock";
 import { BookingsAPI } from "../api";
+import { useAuth } from "../context/AuthContext";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../components/ui/sheet";
 
 const ICONS = { MapPinned, Plane, Luggage, Moon, Building2, Hotel };
 
 export default function Home() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [upcoming, setUpcoming] = useState([]);
   const [activeCat, setActiveCat] = useState(SERVICE_CATEGORIES[0].id);
   const [menuOpen, setMenuOpen] = useState(false);
+  const greetName = user?.name ? user.name.split(" \")[0] : \"Traveler\";
 
   useEffect(() => {
     BookingsAPI.list()
@@ -32,6 +35,7 @@ export default function Home() {
       <div className="flex items-center justify-between px-5 pt-5">
         <div>
           <p className="text-sm text-gray-500">Hello, Traveler <span aria-hidden>👋</span></p>
+          <p className="text-sm text-gray-500">Hello, {greetName} <span aria-hidden>👋</span></p>
           <p className="text-[15px] font-semibold text-gray-900 mt-0.5">Where are your bags going today?</p>
         </div>
         <div className="flex items-center gap-2">
@@ -58,6 +62,9 @@ export default function Home() {
                 <MenuItem icon={HelpCircle} label="Help & Support" onClick={() => setMenuOpen(false)} />
                 <MenuItem icon={Phone} label="Contact Us" onClick={() => setMenuOpen(false)} />
                 <MenuItem icon={LogOut} label="Restart Onboarding" onClick={() => { setMenuOpen(false); navigate("/"); }} />
+                
+
+              
               </div>
               <div className="absolute bottom-6 left-6 right-6 text-xs text-gray-400">
                 Bagdrop Logistics Solutions Pvt. Ltd.
