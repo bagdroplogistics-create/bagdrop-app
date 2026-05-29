@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Truck, ShieldCheck, Clock, MapPin, ChevronLeft, ChevronRight, Plane, Hotel, Sparkles } from "lucide-react";
 import { ONBOARDING_SLIDES, LOGO_URL } from "../mock";
-import { useAuth } from "../context/AuthContext\";
+import { useAuth } from "../context/AuthContext";
 const ICONS = { Truck, ShieldCheck, Clock, MapPin };
 
 export default function Onboarding() {
@@ -14,11 +14,10 @@ export default function Onboarding() {
   const isLast = idx === ONBOARDING_SLIDES.length - 1;
   const isFirst = idx === 0;
 
-  const goNext = () => (isAuthed ? "/home\" : "/login\");
+ const goNext = () => (isAuthed ? "/home" : "/login");
 
 
   const next = () => {
-    if (isLast) navigate("/home");
     if (isLast) navigate(goNext());
     else setIdx(idx + 1);
   };
@@ -26,8 +25,7 @@ export default function Onboarding() {
   return (
     <div className="app-shell flex flex-col bg-white">
       <div className="flex justify-end p-5">
-        {/* <button onClick={() => navigate("/home")} className="text-sm text-gray-500 hover:text-gray-800 px-2">Skip</button> */}
-        <button onClick={() => navigate(goNext())} className="text-sm text-gray-500 hover:text-gray-800 px-2">Skip</button>
+      <button onClick={() => navigate(goNext())} className="text-sm text-gray-500 hover:text-gray-800 px-2">Skip</button>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-6 text-center fade-in" key={idx}>
