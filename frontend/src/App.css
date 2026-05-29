@@ -187,6 +187,23 @@
 .input.with-icon-left { padding-left: 44px; }
 .input.with-icon-right { padding-right: 40px; }
 
+.otp-box {
+  width: 48px; height: 56px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #111827;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.otp-box:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+}
+
 .label { font-size: 12px; font-weight: 600; color: #4b5563; margin-bottom: 6px; display: block; }
 
 /* Step indicator */
@@ -389,26 +406,9 @@
 .splash-logo-wrap {
   width: 148px; height: 148px;
   border-radius: 36px;
-  background: #0f0f10;
+  background: #ffffff;
+  border: 1px solid #ffedd5;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 24px 60px -18px rgba(249, 115, 22, 0.55);
-}
-.input.with-icon-left { padding-left: 44px; }
-.input.with-icon-right { padding-right: 40px; }
-
-.otp-box {
-  width: 48px; height: 56px;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  background: #fff;
-  font-size: 22px;
-  font-weight: 700;
-  text-align: center;
-  color: #111827;
-  outline: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
-}
-.otp-box:focus {
-  border-color: #f97316;
-  box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -18px rgba(249, 115, 22, 0.45);
 }
