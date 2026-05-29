@@ -17,18 +17,18 @@ function App() {
     <div className="App">
       <Toaster position="top-center" />
       <BrowserRouter>
-    <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Onboarding />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<RequireAuth><Home /></RequireAuth>} />
-          <Route path="/book/:serviceId" element={<RequireAuth><Booking /></RequireAuth>} />
-          <Route path="/track" element={<RequireAuth><Track /></RequireAuth>} />
-          <Route path="/history" element={<RequireAuth><History /></RequireAuth>} />
-          <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-     </AuthProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Onboarding />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<RequireAuth><Home /></RequireAuth>} />
+            <Route path="/book/:serviceId" element={<RequireAuth><Booking /></RequireAuth>} />
+            <Route path="/track" element={<RequireAuth><Track /></RequireAuth>} />
+            <Route path="/history" element={<RequireAuth><History /></RequireAuth>} />
+            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
