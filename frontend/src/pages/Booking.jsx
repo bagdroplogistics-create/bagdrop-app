@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ChevronLeft, CalendarDays, Luggage, Check, Phone, User, Plane, Truck, ArrowRightLeft, Moon, Building2, MapPinned, Hotel } from "lucide-react";
 import { toast } from "sonner";
 import { SERVICES, LOCATIONS, BAG_TYPES } from "../mock";
 import { BookingsAPI } from "../api";
+import { useAuth } from "../context/AuthContext";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 
 const ICONS = { Truck, Plane, ArrowRightLeft, Moon, Building2, MapPinned, Luggage, Hotel };
@@ -11,6 +12,7 @@ const ICONS = { Truck, Plane, ArrowRightLeft, Moon, Building2, MapPinned, Luggag
 export default function Booking() {
   const { serviceId } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const service = useMemo(() => SERVICES.find((s) => s.id === serviceId) || SERVICES[0], [serviceId]);
   const Icon = ICONS[service.icon];
 
@@ -26,6 +28,17 @@ export default function Booking() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  
+  // Prefill contact details from logged-in user
+  useEffect(() => {
+    if (user) {
+      if (!name && user.name) setName(user.name);
+      if (!phone && user.phone) setPhone(user.phone);
+      if (!email && user.email) setEmail(user.email);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+  
   const [selectedBag, setSelectedBag] = useState(0);
   const bagOptions = BAG_TYPES[service.id] || [];
   const bagType = bagOptions[selectedBag];
