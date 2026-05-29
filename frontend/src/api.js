@@ -9,11 +9,11 @@ const API = axios.create({
   },
 });
 
-const TOKEN_KEY = \"bagdrop_token\";
-const USER_KEY = \"bagdrop_user\";
+const TOKEN_KEY = "bagdrop_token";
+const USER_KEY = "bagdrop_user";
 
 export function getToken() {
-  return localStorage.getItem(TOKEN_KEY) || \"\";
+  return localStorage.getItem(TOKEN_KEY) || "";
 }
 export function setToken(t) {
   if (t) localStorage.setItem(TOKEN_KEY, t);
@@ -32,10 +32,10 @@ export function setStoredUser(u) {
 export function getClientId() {
   const user = getStoredUser();
   if (user?.id) return user.id;
-  let id = localStorage.getItem(\"bagdrop_client_id\");
+  let id = localStorage.getItem("bagdrop_client_id");
   if (!id) {
     id = (crypto.randomUUID && crypto.randomUUID()) || `c_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
-    localStorage.setItem(\"bagdrop_client_id\", id);
+    localStorage.setItem("bagdrop_client_id", id);
   }
   return id;
 }
@@ -49,11 +49,11 @@ http.interceptors.request.use((config) => {
 });
 
 export const AuthAPI = {
-  requestOtp: async (phone) => (await http.post(\"/auth/request-otp\", { phone })).data,
-  verifyOtp: async (phone, code, name) => (await http.post(\"/auth/verify-otp\", { phone, code, name })).data,
-  me: async () => (await http.get(\"/auth/me\")).data,
-  logout: async () => (await http.post(\"/auth/logout\")).data,
-  updateProfile: async (body) => (await http.patch(\"/auth/profile\", body)).data,
+  requestOtp: async (phone) => (await http.post("/auth/request-otp", { phone })).data,
+  verifyOtp: async (phone, code, name) => (await http.post("/auth/verify-otp", { phone, code, name })).data,
+  me: async () => (await http.get("/auth/me")).data,
+  logout: async () => (await http.post("/auth/logout")).data,
+  updateProfile: async (body) => (await http.patch("/auth/profile", body)).data,
 };
                                                    
 
@@ -74,8 +74,8 @@ export const BookingsAPI = {
   },
 
   updateStatus: async (id, body) => {
-    const { data } = await http.patch(`/bookings/${id}/status`, body);
-    return data;
+    const { data } = await API.patch(`/bookings/${id}/status`, body);
+    return response.data;
   },
 
   track: async (code) => {
