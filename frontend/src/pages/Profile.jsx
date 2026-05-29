@@ -11,11 +11,11 @@ export default function Profile() {
   const navigate = useNavigate();
   const { user, logout, updateUser } = useAuth();
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState(user?.name || "\");
-  const [email, setEmail] = useState(user?.email || "\");
+  const [name, setName] = useState(user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [memberSince, setMemberSince] = useState("");
   const [bookingsCount, setBookingsCount] = useState(0);
-  const [memberSince, setMemberSince] = useState("\");
-
+  
   useEffect(() => {
     if (!user) return;
     setName(user.name || "");
