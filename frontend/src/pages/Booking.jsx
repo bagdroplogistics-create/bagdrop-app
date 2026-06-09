@@ -23,11 +23,14 @@ export default function Booking() {
   const [dropAddress, setDropAddress] = useState("");
   const [date, setDate] = useState("");
   const [dropDate, setDropDate] = useState("");
-  const [timeSlot, setTimeSlot] = useState("");
+  const [timeSlot, setTimeSlot] = useState("10:00 - 12:00");
+  // const [timeSlot, setTimeSlot] = useState("");
   const [bagCount, setBagCount] = useState(1);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const SHOW_PRICING = false;
+  const SHOW_TIME_SLOT = false;
   
  // Prefill contact details from logged-in user
   useEffect(() => {
@@ -194,7 +197,7 @@ export default function Booking() {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <label className="label">Pickup time slot</label>
               <div className="grid grid-cols-2 gap-2">
                 {SLOTS.map((s) => (
@@ -203,7 +206,25 @@ export default function Booking() {
                   </button>
                 ))}
               </div>
-            </div>
+            </div> */}
+            {SHOW_TIME_SLOT && (
+             <div>
+                <label className="label">Pickup time slot</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {SLOTS.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => setTimeSlot(s)}
+                      className={`bag-tile text-sm font-medium ${
+                        timeSlot === s ? "selected" : ""
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
     
 <div>
   <label className="label">Bags</label>
@@ -237,9 +258,15 @@ export default function Booking() {
         </div>
 
         <div className="flex items-center gap-3">
-          <p className="text-sm font-semibold text-gray-700">
+          {/* <p className="text-sm font-semibold text-gray-700">
             ₹{bag.price}/bag
-          </p>
+          </p> */}
+
+          {SHOW_PRICING && (
+            <p className="text-sm font-semibold text-gray-700">
+              ₹{bag.price}/bag
+            </p>
+          )}
 
           <Counter
             value={bagCount}
@@ -299,10 +326,20 @@ export default function Booking() {
               <div className="summary-row"><span>Bags</span><span className="text-gray-900">{totalBags} × {bagType.name}</span></div>
               <div className="summary-row"><span>Contact</span><span className="text-gray-900">{name} · {phone}</span></div>
             </div>
-            <div className="rounded-2xl bg-orange-50 border border-orange-100 p-4 flex items-center justify-between">
+            {/* <div className="rounded-2xl bg-orange-50 border border-orange-100 p-4 flex items-center justify-between">
               <span className="text-sm font-semibold text-orange-900">Total payable</span>
               <span className="text-xl font-bold text-orange-700">₹{totalPrice.toLocaleString("en-IN")}</span>
-            </div>
+            </div> */}
+            {SHOW_PRICING && (
+                <div className="rounded-2xl bg-orange-50 border border-orange-100 p-4 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-orange-900">
+                    Total payable
+                  </span>
+                  <span className="text-xl font-bold text-orange-700">
+                    ₹{totalPrice.toLocaleString("en-IN")}
+                  </span>
+                </div>
+              )}
             <p className="text-[11px] text-gray-400">Final pricing may vary based on distance & actual weight checks at pickup.</p>
           </div>
         )}
@@ -312,7 +349,9 @@ export default function Booking() {
         {step < 4 ? (
           <button onClick={handleNext} className="btn-primary w-full h-14">Continue</button>
         ) : (
-          <button onClick={handleConfirm} className="btn-primary w-full h-14">Confirm Booking · ₹{totalPrice.toLocaleString("en-IN")}</button>
+          <button onClick={handleConfirm} className="btn-primary w-full h-14">{SHOW_PRICING
+  ? `Confirm Booking · ₹${totalPrice.toLocaleString("en-IN")}`
+  : "Confirm Booking"}</button>
         )}
       </div>
     </div>
