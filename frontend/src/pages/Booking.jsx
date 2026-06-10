@@ -57,7 +57,7 @@ export default function Booking() {
     if (step === 1) return from && to && pickupAddress && dropAddress;
     if (step === 2) {
     if (!date || bagCount < 1) return false;
-        if (service.id !== "after-hours") {
+        if (service.id !== "after-hour-airport") {
           if (!dropDate) return false;
         }
       if (dropDate < date) return false;
@@ -94,7 +94,7 @@ export default function Booking() {
         pickup_address: pickupAddress,
         drop_address: dropAddress,
         date,
-        drop_date: service.id === "after-hours" ? date : dropDate,
+        drop_date: service.id === "after-hour-airport" ? date : dropDate,
         time_slot: timeSlot,
         bag_selections: { [bagType.id]: bagCount },
         total_bags: totalBags,
@@ -192,7 +192,7 @@ export default function Booking() {
                   <CalendarDays size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 </div>
               </div>
-             {service.id !== "after-hours" && (
+             {service.id !== "after-hour-airport" && (
                 <div>
                   <label className="label">Delivery date</label>
                   <div className="relative">
@@ -337,7 +337,12 @@ export default function Booking() {
               <div className="summary-row"><span>Pickup</span><span className="text-gray-900 text-right max-w-[60%]">{pickupAddress}<br/>{LOCATIONS.find(l=>l.id===from)?.city}</span></div>
               <div className="summary-row"><span>Drop</span><span className="text-gray-900 text-right max-w-[60%]">{dropAddress}<br/>{LOCATIONS.find(l=>l.id===to)?.city}</span></div>
               <div className="summary-row"><span>Pickup date · Slot</span><span className="text-gray-900">{date} · {timeSlot}</span></div>
-              <div className="summary-row"><span>Delivery date</span><span className="text-gray-900">{dropDate}</span></div>
+              {service.id !== "after-hour-airport" && (
+                  <div className="summary-row">
+                    <span>Delivery date</span>
+                    <span className="text-gray-900">{dropDate}</span>
+                  </div>
+                )}
               <div className="summary-row"><span>Bags</span><span className="text-gray-900">{totalBags} × {bagType.name}</span></div>
               <div className="summary-row"><span>Contact</span><span className="text-gray-900">{name} · {phone}</span></div>
             </div>
