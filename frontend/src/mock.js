@@ -88,15 +88,16 @@ export const BAG_TYPES = {
       weight: "up to 32kg",
       price: 999,
     },
-    {
-      // id: "airport-1200",
-       id: 'travel',
-      name: 'Travel Bag',
-      dim: 'Standard travel bag / suitcase',
-      weight: "up to 32kg",
-      price: 999,
-    },
-  ],
+    ],
+  //   {
+    
+  //      id: 'travel',
+  //     name: 'Travel Bag',
+  //     dim: 'Standard travel bag / suitcase',
+  //     weight: "up to 32kg",
+  //     price: 999,
+  //   },
+  
 
   "address-to-address": [
     {
@@ -107,24 +108,8 @@ export const BAG_TYPES = {
       weight: "up to 32kg",
       price: 999,
     },
-    {
-      // id: "door-600",
-       id: 'travel',
-      name: 'Travel Bag',
-      dim: 'Standard travel bag / suitcase',
-      weight: "up to 32kg",
-      price: 999,
-    },
-    {
-      // id: "door-1200",
-       id: 'travel',
-      name: 'Travel Bag',
-      dim: 'Standard travel bag / suitcase',
-      weight: "up to 32kg",
-      price: 999,
-    },
-  ],
-
+    ],
+    
   "hotel-to-hotel": [
     {
       id: 'travel',
