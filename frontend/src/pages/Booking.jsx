@@ -56,7 +56,10 @@ export default function Booking() {
   const canContinue = () => {
     if (step === 1) return from && to && pickupAddress && dropAddress;
     if (step === 2) {
-      if (!date || !dropDate || !timeSlot || bagCount < 1) return false;
+    if (!date || bagCount < 1) return false;
+        if (service.id !== "after-hours") {
+          if (!dropDate) return false;
+        }
       if (dropDate < date) return false;
       return true;
     }
@@ -91,7 +94,7 @@ export default function Booking() {
         pickup_address: pickupAddress,
         drop_address: dropAddress,
         date,
-        drop_date: dropDate,
+        drop_date: service.id === "after-hours" ? date : dropDate,
         time_slot: timeSlot,
         bag_selections: { [bagType.id]: bagCount },
         total_bags: totalBags,
@@ -189,13 +192,25 @@ export default function Booking() {
                   <CalendarDays size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 </div>
               </div>
-              <div>
-                <label className="label">Delivery date</label>
-                <div className="relative">
-                  <input data-testid="drop-date" type="date" className="input with-icon-right" value={dropDate} onChange={(e) => setDropDate(e.target.value)} min={date || today} />
-                  <CalendarDays size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+             {service.id !== "after-hours" && (
+                <div>
+                  <label className="label">Delivery date</label>
+                  <div className="relative">
+                    <input
+                      data-testid="drop-date"
+                      type="date"
+                      className="input with-icon-right"
+                      value={dropDate}
+                      onChange={(e) => setDropDate(e.target.value)}
+                      min={date || today}
+                    />
+                    <CalendarDays
+                      size={16}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             {/* <div>
               <label className="label">Pickup time slot</label>
